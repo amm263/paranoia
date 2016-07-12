@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	h1= title
+	form#formAddPost(name="newpost",method="post",action="/admin/newpost")
+		input#inputPostTitle(type="text",placeholder="Title",name="posttitle")
+		br
+		textarea#inputPostContent(name="postcontent")
+		br
+		button#btnSubmit(type="submit") Submit

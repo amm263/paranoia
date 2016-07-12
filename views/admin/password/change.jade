@@ -1,0 +1,16 @@
+extends ../../layout
+
+block content
+	div.container
+		div.row
+			div.col-sm-6.col-md-4.col-md-offset-4
+				h1.text-center.login-title Registration Details
+					div.signup-wall
+						form(class='form-signin', action='/admin/password/change', method='POST')
+							p #{user}
+							input(type='password', name='password', class='form-control nomargin', placeholder='Current Password', required)
+							input(type='password', name='newpassword', class='form-control nomargin', placeholder='New Password', required)
+							button(class='btn btn-lg btn-primary btn-block', type='submit') Register
+							span.clearfix
+						if message
+							p #{message}

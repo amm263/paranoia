@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	h1= title
+	p Welcome to #{title}, #{username}
+		ul
+			each post in postlist
+				li
+					p #{post.title}
+
