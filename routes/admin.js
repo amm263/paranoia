@@ -90,7 +90,6 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', function(req, res) {
-	var db = req.db;
 	var query = User.where({ username: req.body.username});
 	query.findOne(function (err, user) {
 		if (err) return console.error(err);
@@ -149,7 +148,6 @@ router.get('/password/change', isAdmin, function(req,res){
 });
 
 router.post('/password/change', isAdmin, function(req,res){
-	var db = req.db;
 	var query = User.where({ username: req.session.user});
 	query.findOne(function (err, user) {
 		if (err) return console.error(err);
