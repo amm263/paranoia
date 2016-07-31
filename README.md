@@ -1,11 +1,14 @@
 # Paranoia
 This is a simple blog engine focused on privacy. It uses Express, the Node.js web application framework, Mongodb and few other dependency specified in the *packages.json* file. Access to the blog is restricted with a password mechanism. 
 
-To access the content of the blog, visitors must authenticate through a GET request, submitting a password or shared secret. 
-Such as requesting *example.com/mysecret*. 
-All unauthorized users are redirected to a default page. 
+To access the content of the blog, visitors must authenticate through a GET request, submitting a shared key or *secret*. 
+Such as requesting *example.com/mysecret*. This is handy if the user wants to set a bookmark and forget the key.
 
-The intention is to allow access to only known users and forbid strangers or web crawlers, without a need for a user/password login system. Hence the name *paranoia*.
+All unauthorized users are redirected to a default page.
+Successful visits are logged but no mechanism is provided to automatically block them in case they get overshared.
+The use of this blog engine is intended for very small and personal websites.
+The intention is to allow access to only known users and forbid strangers or web crawlers, without the hassle of a user/password login system.
+Hence the name *paranoia*.
 
 
 ##Features
