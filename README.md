@@ -31,4 +31,6 @@ The intention is to allow access to only known users and forbid strangers or web
 * Admin user role (godmode)
 
 ## changelog
+* 31-Jul-2016 Fixed some bugs, added ajax filled tables to display visits.
 * 12-Jul-2016 Backend skeleton/proof of concept. 
+

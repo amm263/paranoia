@@ -74,13 +74,15 @@ router.post('/secrets', isAdmin, function(req, res) {
 
 // Renders all visits per secretid in a JSON list. 
 router.get('/visits/:secretid', isAdmin, function(req, res) {
-	Visit.find({'secret_id': req.params.secretid} , function(err, visitlist) {
-		if (err) return console.error(err);
+	Visit.find({ 'secret_id': req.params.secretid}).		//Find all Visits by secret_id
+	select('-_id access_date user_agent ip location').		//Only show desired keys. (_id must be forced off)										
+	sort('-access_date').									//Sort by access_date, descending
+	limit('30').exec(function(err, visitlist) {				//Limit to first 30 objects and execute query
 		if (visitlist) {
-			res.render('visit', {visitlist: visitlist});
+			res.json(visitlist);
 		} else {
-			console.log('No visits found for '+req.params.secretid+' visit');
-		}	
+			console.log('Can not find '+req.params.secretid+' visits list');
+		}
 	});
 });
 
