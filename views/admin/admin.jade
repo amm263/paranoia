@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+	h1= title
+	p Welcome to #{title}, #{username}
+		ul
+			each post in postlist
+				li
+					a(href='../posts/'+post.id) #{post.title}
+					br
+					a(class='button', href='../posts/edit/'+post.id) Edit
+					form#formDeletePost(name="deletepost",method="post",action="/posts/delete")
+						input(type="hidden" name="postid" value="#{post._id}")
+						button#btnSubmit(type="submit") Delete

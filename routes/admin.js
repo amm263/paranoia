@@ -8,16 +8,17 @@ var moment = require('moment');
 
  
 var isAdmin = function (req, res, next) {
-  if (req.session.user)
-    return next();
-  res.redirect('/');
+	return next(); //DEBUG ON
+	if (req.session.user)
+		return next();
+	res.redirect('/');
 }
 
 /*----	Admin panel/bashboard ----*/
 router.get('/dashboard', isAdmin, function(req, res) {
 	Post.find(function (err, postlist) {
 		if (err) return console.error(err);
-		res.render('admin', { 
+		res.render('admin/admin', { 
 			title : 'Express',
 			postlist : postlist,
 			username : req.session.user
@@ -27,7 +28,7 @@ router.get('/dashboard', isAdmin, function(req, res) {
 
 /*---- 	New Post ----*/
 router.get('/newpost', isAdmin, function(req, res) {
-	res.render('newpost', { title: 'New post' });
+	res.render('admin/newpost', { title: 'New post' });
 });
 
 router.post('/newpost', isAdmin, function(req, res) {
@@ -51,7 +52,7 @@ router.get('/secrets', isAdmin, function(req, res) {
 	var db = req.db;
 	Secret.find(function (err, secretlist) {
 		if (err) return console.error(err);
-		res.render('secrets', { 
+		res.render('admin/secrets', { 
 			title: 'New secret',
 			secretlist: secretlist, 
 			moment: moment
@@ -68,7 +69,7 @@ router.post('/secrets', isAdmin, function(req, res) {
 	
 	secret.save(function (err, secret) {
 		if (err) return console.error(err);
-		else res.redirect("/admin/secrets");
+		else res.redirect("admin/secrets");
 	});
 });	
 
@@ -88,7 +89,7 @@ router.get('/visits/:secretid', isAdmin, function(req, res) {
 
 /*----	Login ----*/
 router.get('/login', function(req, res) {
-	res.render('login');
+	res.render('admin/login');
 });
 
 router.post('/login', function(req, res) {
@@ -114,7 +115,7 @@ router.post('/login', function(req, res) {
 router.get('/install', function(req, res){
 	User.find(function (err, userlist) {
 		if (err) return console.error(err);
-		if (userlist) res.render('install_done');
+		if (userlist) res.render('admin/install_done');
 	});		
     res.render('register', {message: "Create your first user"});
 });
@@ -122,13 +123,13 @@ router.get('/install', function(req, res){
 router.post('/install', function(req, res) {
 	User.find(function (err, userlist) {
 		if (err) return console.error(err);
-		if (userlist) res.redirect("/admin/install");
+		if (userlist) res.redirect("admin/install");
 	});		
 	var query = User.where({ username: req.body.username});
 	query.findOne(function (err, user) {
 		if (err) return console.error(err);
 		if (user) {
-			res.render('register', {message: "User already exist"});
+			res.render('admin/register', {message: "User already exist"});
 		} else {
 			var newUser = new User({
 					username: req.body.username,

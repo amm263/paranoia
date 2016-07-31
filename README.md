@@ -19,10 +19,10 @@ Hence the name *paranoia*.
 * First time installation
 * Admin Login
 * Change password
+* Edit/Delete Posts
 
 ##Todo
 * UI/frontend
-* Edit/Delete Posts
 * Markdown formatting
 * Automated backup
 * Post Categories
@@ -34,6 +34,7 @@ Hence the name *paranoia*.
 * Admin user role (godmode)
 
 ## changelog
+* 01-Aug-2016 Edit/Delete Posts
 * 31-Jul-2016 Fixed some bugs, added ajax filled tables to display visits.
 * 12-Jul-2016 Backend skeleton/proof of concept. 
 

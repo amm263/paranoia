@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+	h1= title
+	form#formAddPost(name="newpost",method="post",action="/posts/edit")
+		input#inputPostTitle(type="text",value="#{post.title}",name="posttitle")
+		br
+		textarea#inputPostContent(name="postcontent")
+			| #{post.content}
+		br
+		input(type="hidden" name="postid" value="#{post._id}")
+		br
+		button#btnSubmit(type="submit") Update
